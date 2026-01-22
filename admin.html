@@ -1,0 +1,217 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>لوحة التحكم | HK Collection</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700&family=Inter:wght@400;500;600;700&display=swap"
+        rel="stylesheet">
+    <link rel="stylesheet" href="admin.css">
+</head>
+
+<body>
+    <div class="admin-container">
+        <!-- Sidebar -->
+        <aside class="sidebar">
+            <div class="sidebar-header">
+                <div class="logo">
+                    <div class="logo-icon">HK</div>
+                    <div class="logo-text">
+                        <span class="logo-name">HK Collection</span>
+                        <span class="logo-tagline">لوحة التحكم</span>
+                    </div>
+                </div>
+            </div>
+            <nav class="sidebar-nav">
+                <a href="#" class="nav-item active" data-section="products">
+                    <span class="nav-icon">📦</span>
+                    <span>المنتجات</span>
+                </a>
+                <a href="#" class="nav-item" data-section="export">
+                    <span class="nav-icon">💾</span>
+                    <span>تصدير البيانات</span>
+                </a>
+                <a href="index.html" class="nav-item">
+                    <span class="nav-icon">🌐</span>
+                    <span>عرض الموقع</span>
+                </a>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="main-content">
+            <!-- Header -->
+            <header class="content-header">
+                <h1>إدارة المنتجات</h1>
+                <button class="btn btn-primary" id="addProductBtn">
+                    <span>+</span> إضافة منتج جديد
+                </button>
+            </header>
+
+            <!-- Stats Cards -->
+            <div class="stats-grid">
+                <div class="stat-card">
+                    <div class="stat-icon">📦</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="totalProducts">0</span>
+                        <span class="stat-label">إجمالي المنتجات</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⛓️</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="chainsCount">0</span>
+                        <span class="stat-label">سناسل</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🌸</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="perfumesCount">0</span>
+                        <span class="stat-label">عطور</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">⌚</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="watchesCount">0</span>
+                        <span class="stat-label">ساعات</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Products Table -->
+            <div class="table-container">
+                <div class="table-header">
+                    <h2>قائمة المنتجات</h2>
+                    <div class="table-filters">
+                        <select id="categoryFilter">
+                            <option value="all">جميع الفئات</option>
+                            <option value="chains">سناسل</option>
+                            <option value="perfumes">عطور</option>
+                            <option value="watches">ساعات</option>
+                            <option value="accessories">اكسسوارات</option>
+                        </select>
+                    </div>
+                </div>
+                <table class="products-table">
+                    <thead>
+                        <tr>
+                            <th>الصورة</th>
+                            <th>اسم المنتج</th>
+                            <th>الفئة</th>
+                            <th>السعر</th>
+                            <th>الوسم</th>
+                            <th>الإجراءات</th>
+                        </tr>
+                    </thead>
+                    <tbody id="productsTableBody">
+                        <!-- Products will be loaded here -->
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Export Section -->
+            <div class="export-section" id="exportSection" style="display: none;">
+                <h2>تصدير البيانات</h2>
+                <p>قم بنسخ الكود أدناه واستبدله في ملف data.js قبل رفعه على GitHub</p>
+                <div class="export-actions">
+                    <button class="btn btn-primary" id="generateExport">توليد الكود</button>
+                    <button class="btn btn-secondary" id="copyExport">نسخ الكود</button>
+                    <button class="btn btn-secondary" id="downloadExport">تحميل الملف</button>
+                </div>
+                <textarea id="exportCode" readonly placeholder="اضغط على توليد الكود..."></textarea>
+            </div>
+        </main>
+    </div>
+
+    <!-- Add/Edit Product Modal -->
+    <div class="modal-overlay" id="productModal">
+        <div class="modal">
+            <div class="modal-header">
+                <h2 id="modalTitle">إضافة منتج جديد</h2>
+                <button class="modal-close" id="closeModal">&times;</button>
+            </div>
+            <form id="productForm">
+                <input type="hidden" id="productId">
+
+                <div class="form-group">
+                    <label for="productName">اسم المنتج *</label>
+                    <input type="text" id="productName" required placeholder="مثال: سلسلة ذهبية فاخرة">
+                </div>
+
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productCategory">الفئة *</label>
+                        <select id="productCategory" required>
+                            <option value="">اختر الفئة</option>
+                            <option value="chains">سناسل</option>
+                            <option value="perfumes">عطور</option>
+                            <option value="watches">ساعات</option>
+                            <option value="accessories">اكسسوارات</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="productPrice">السعر ($) *</label>
+                        <input type="number" id="productPrice" required min="0" step="0.01" placeholder="45">
+                    </div>
+                </div>
+
+                <div class="form-group">
+                    <label for="productBadge">الوسم (اختياري)</label>
+                    <select id="productBadge">
+                        <option value="">بدون وسم</option>
+                        <option value="جديد">جديد</option>
+                        <option value="عرض خاص">عرض خاص</option>
+                        <option value="الأكثر مبيعاً">الأكثر مبيعاً</option>
+                        <option value="حصري">حصري</option>
+                    </select>
+                </div>
+
+                <div class="form-group">
+                    <label>صورة المنتج *</label>
+                    <div class="image-upload-container">
+                        <div class="image-preview" id="imagePreview">
+                            <span class="placeholder">اضغط لرفع صورة</span>
+                        </div>
+                        <input type="file" id="imageInput" accept="image/*" hidden>
+                        <input type="hidden" id="imageData">
+                        <p class="image-hint">سيتم تحويل الصورة لتضمينها في الملف</p>
+                    </div>
+                </div>
+
+                <div class="form-actions">
+                    <button type="button" class="btn btn-secondary" id="cancelBtn">إلغاء</button>
+                    <button type="submit" class="btn btn-primary">حفظ المنتج</button>
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <!-- Delete Confirmation Modal -->
+    <div class="modal-overlay" id="deleteModal">
+        <div class="modal modal-small">
+            <div class="modal-header">
+                <h2>تأكيد الحذف</h2>
+                <button class="modal-close" id="closeDeleteModal">&times;</button>
+            </div>
+            <div class="modal-body">
+                <p>هل أنت متأكد من حذف هذا المنتج؟</p>
+                <p class="product-name-delete" id="deleteProductName"></p>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelDelete">إلغاء</button>
+                <button class="btn btn-danger" id="confirmDelete">حذف</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="admin.js"></script>
+</body>
+
+</html>
