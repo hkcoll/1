@@ -69,6 +69,9 @@ function initFilters() {
 
 // Category Cards
 function initCategoryCards() {
+    // Update category counts dynamically
+    updateCategoryCounts();
+
     document.querySelectorAll('.category-card').forEach(card => {
         card.addEventListener('click', () => {
             const category = card.dataset.category;
@@ -79,6 +82,21 @@ function initCategoryCards() {
             renderProducts(filtered);
             document.getElementById('products').scrollIntoView({ behavior: 'smooth' });
         });
+    });
+}
+
+// Update category counts based on actual products
+function updateCategoryCounts() {
+    const categories = ['chains', 'perfumes', 'watches', 'accessories'];
+    categories.forEach(category => {
+        const count = productsData.filter(p => p.category === category).length;
+        const card = document.querySelector(`.category-card[data-category="${category}"]`);
+        if (card) {
+            const countElement = card.querySelector('.category-count');
+            if (countElement) {
+                countElement.textContent = count === 1 ? `${count} منتج` : `${count} منتجات`;
+            }
+        }
     });
 }
 
