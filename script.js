@@ -87,7 +87,7 @@ function initCategoryCards() {
 
 // Update category counts based on actual products
 function updateCategoryCounts() {
-    const categories = ['chains', 'perfumes', 'watches', 'accessories'];
+    const categories = ['perfumes', 'watches', 'accessories'];
     categories.forEach(category => {
         const count = productsData.filter(p => p.category === category).length;
         const card = document.querySelector(`.category-card[data-category="${category}"]`);

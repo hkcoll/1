@@ -5,7 +5,6 @@ let deleteId = null;
 
 // Category mappings
 const categoryNames = {
-    chains: 'سناسل',
     perfumes: 'عطور',
     watches: 'ساعات',
     accessories: 'اكسسوارات'
@@ -100,7 +99,6 @@ function renderProducts(filteredProducts = null) {
 // Update statistics
 function updateStats() {
     document.getElementById('totalProducts').textContent = products.length;
-    document.getElementById('chainsCount').textContent = products.filter(p => p.category === 'chains').length;
     document.getElementById('perfumesCount').textContent = products.filter(p => p.category === 'perfumes').length;
     document.getElementById('watchesCount').textContent = products.filter(p => p.category === 'watches').length;
 }
