@@ -61,7 +61,13 @@
                         <span class="stat-label">إجمالي المنتجات</span>
                     </div>
                 </div>
-
+                <div class="stat-card">
+                    <div class="stat-icon">💎</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="accessoriesCount">0</span>
+                        <span class="stat-label">اكسسوارات</span>
+                    </div>
+                </div>
                 <div class="stat-card">
                     <div class="stat-icon">🌸</div>
                     <div class="stat-info">
@@ -76,6 +82,34 @@
                         <span class="stat-label">ساعات</span>
                     </div>
                 </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🔌</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="hometoolsCount">0</span>
+                        <span class="stat-label">أدوات منزلية</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">👛</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="walletsCount">0</span>
+                        <span class="stat-label">جزادين</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">🎒</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="militarybagsCount">0</span>
+                        <span class="stat-label">شنط عسكرية</span>
+                    </div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-icon">💄</div>
+                    <div class="stat-info">
+                        <span class="stat-value" id="makeupCount">0</span>
+                        <span class="stat-label">مكياج</span>
+                    </div>
+                </div>
             </div>
 
             <!-- Products Table -->
@@ -85,10 +119,13 @@
                     <div class="table-filters">
                         <select id="categoryFilter">
                             <option value="all">جميع الفئات</option>
-
+                            <option value="accessories">اكسسوارات</option>
                             <option value="perfumes">عطور</option>
                             <option value="watches">ساعات</option>
-                            <option value="accessories">اكسسوارات</option>
+                            <option value="hometools">أدوات منزلية وكهربائية</option>
+                            <option value="wallets">جزادين</option>
+                            <option value="militarybags">شنط عسكرية</option>
+                            <option value="makeup">مكياج</option>
                         </select>
                     </div>
                 </div>
@@ -98,6 +135,7 @@
                             <th>الصورة</th>
                             <th>اسم المنتج</th>
                             <th>الفئة</th>
+                            <th>النوع</th>
                             <th>السعر</th>
                             <th>الوسم</th>
                             <th>الإجراءات</th>
@@ -143,10 +181,13 @@
                         <label for="productCategory">الفئة *</label>
                         <select id="productCategory" required>
                             <option value="">اختر الفئة</option>
-
+                            <option value="accessories">اكسسوارات</option>
                             <option value="perfumes">عطور</option>
                             <option value="watches">ساعات</option>
-                            <option value="accessories">اكسسوارات</option>
+                            <option value="hometools">أدوات منزلية وكهربائية</option>
+                            <option value="wallets">جزادين نسائية ورجالية</option>
+                            <option value="militarybags">شنط عسكرية</option>
+                            <option value="makeup">مكياج</option>
                         </select>
                     </div>
                     <div class="form-group">
@@ -155,15 +196,25 @@
                     </div>
                 </div>
 
-                <div class="form-group">
-                    <label for="productBadge">الوسم (اختياري)</label>
-                    <select id="productBadge">
-                        <option value="">بدون وسم</option>
-                        <option value="جديد">جديد</option>
-                        <option value="عرض خاص">عرض خاص</option>
-                        <option value="الأكثر مبيعاً">الأكثر مبيعاً</option>
-                        <option value="حصري">حصري</option>
-                    </select>
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="productGender">النوع (للفئات المحددة)</label>
+                        <select id="productGender">
+                            <option value="">بدون تحديد</option>
+                            <option value="women">نسائي 👩</option>
+                            <option value="men">رجالي 👨</option>
+                        </select>
+                    </div>
+                    <div class="form-group">
+                        <label for="productBadge">الوسم (اختياري)</label>
+                        <select id="productBadge">
+                            <option value="">بدون وسم</option>
+                            <option value="جديد">جديد</option>
+                            <option value="عرض خاص">عرض خاص</option>
+                            <option value="الأكثر مبيعاً">الأكثر مبيعاً</option>
+                            <option value="حصري">حصري</option>
+                        </select>
+                    </div>
                 </div>
 
                 <div class="form-group">

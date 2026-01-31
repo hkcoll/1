@@ -5,9 +5,13 @@ let deleteId = null;
 
 // Category mappings
 const categoryNames = {
+    accessories: 'اكسسوارات',
     perfumes: 'عطور',
     watches: 'ساعات',
-    accessories: 'اكسسوارات'
+    hometools: 'أدوات منزلية وكهربائية',
+    wallets: 'جزادين نسائية ورجالية',
+    militarybags: 'شنط عسكرية',
+    makeup: 'مكياج'
 };
 
 // Initialize
@@ -79,11 +83,17 @@ function renderProducts(filteredProducts = null) {
     const tbody = document.getElementById('productsTableBody');
     const data = filteredProducts || products;
 
+    const genderNames = {
+        women: 'نسائي 👩',
+        men: 'رجالي 👨'
+    };
+
     tbody.innerHTML = data.map(product => `
         <tr>
             <td><img src="${product.image}" alt="${product.name}" class="product-thumb"></td>
             <td class="product-name-cell">${product.name}</td>
             <td><span class="product-category-badge">${categoryNames[product.category] || product.category}</span></td>
+            <td><span class="product-gender-badge ${!product.gender ? 'empty' : ''}">${genderNames[product.gender] || '—'}</span></td>
             <td><strong>${product.currency}${product.price}</strong></td>
             <td><span class="product-badge ${!product.badge ? 'empty' : ''}">${product.badge || 'بدون وسم'}</span></td>
             <td>
@@ -99,8 +109,13 @@ function renderProducts(filteredProducts = null) {
 // Update statistics
 function updateStats() {
     document.getElementById('totalProducts').textContent = products.length;
+    document.getElementById('accessoriesCount').textContent = products.filter(p => p.category === 'accessories').length;
     document.getElementById('perfumesCount').textContent = products.filter(p => p.category === 'perfumes').length;
     document.getElementById('watchesCount').textContent = products.filter(p => p.category === 'watches').length;
+    document.getElementById('hometoolsCount').textContent = products.filter(p => p.category === 'hometools').length;
+    document.getElementById('walletsCount').textContent = products.filter(p => p.category === 'wallets').length;
+    document.getElementById('militarybagsCount').textContent = products.filter(p => p.category === 'militarybags').length;
+    document.getElementById('makeupCount').textContent = products.filter(p => p.category === 'makeup').length;
 }
 
 // Filter products
@@ -132,6 +147,7 @@ function openModal(id = null) {
             document.getElementById('productName').value = product.name;
             document.getElementById('productCategory').value = product.category;
             document.getElementById('productPrice').value = product.price;
+            document.getElementById('productGender').value = product.gender || '';
             document.getElementById('productBadge').value = product.badge || '';
             document.getElementById('imageData').value = product.image;
             document.getElementById('imagePreview').innerHTML = `<img src="${product.image}" alt="Preview">`;
@@ -196,6 +212,7 @@ function saveProduct(e) {
     const name = document.getElementById('productName').value.trim();
     const category = document.getElementById('productCategory').value;
     const price = parseFloat(document.getElementById('productPrice').value);
+    const gender = document.getElementById('productGender').value || null;
     const badge = document.getElementById('productBadge').value || null;
     const image = document.getElementById('imageData').value;
 
@@ -214,6 +231,7 @@ function saveProduct(e) {
                 category,
                 categoryAr: categoryNames[category],
                 price,
+                gender,
                 badge,
                 image
             };
@@ -229,6 +247,7 @@ function saveProduct(e) {
             price,
             currency: '$',
             image,
+            gender,
             badge
         });
     }

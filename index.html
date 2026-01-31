@@ -85,38 +85,88 @@
     <!-- Categories Section -->
     <section class="categories" id="categories">
         <div class="container">
-            <h2 class="section-title">الفئات</h2>
+            <h2 class="section-title">تسوق حسب الفئة</h2>
+            <p class="section-subtitle">اختر الفئة التي تناسب ذوقك واستمتع بأفضل المنتجات</p>
             <div class="categories-grid">
 
+                <div class="category-card" data-category="accessories">
+                    <div class="category-icon">💎</div>
+                    <h3 class="category-name">اكسسوارات</h3>
+                    <p class="category-count">0 منتج</p>
+                </div>
                 <div class="category-card" data-category="perfumes">
                     <div class="category-icon">🌸</div>
                     <h3 class="category-name">عطور</h3>
-                    <p class="category-count">8 منتجات</p>
+                    <p class="category-count">0 منتج</p>
                 </div>
                 <div class="category-card" data-category="watches">
                     <div class="category-icon">⌚</div>
                     <h3 class="category-name">ساعات</h3>
-                    <p class="category-count">15 منتج</p>
+                    <p class="category-count">0 منتج</p>
                 </div>
-                <div class="category-card" data-category="accessories">
-                    <div class="category-icon">💎</div>
-                    <h3 class="category-name">اكسسوارات</h3>
-                    <p class="category-count">20 منتج</p>
+                <div class="category-card" data-category="hometools">
+                    <div class="category-icon">🔌</div>
+                    <h3 class="category-name">أدوات منزلية وكهربائية</h3>
+                    <p class="category-count">0 منتج</p>
+                </div>
+                <div class="category-card" data-category="wallets">
+                    <div class="category-icon">👛</div>
+                    <h3 class="category-name">جزادين نسائية ورجالية</h3>
+                    <p class="category-count">0 منتج</p>
+                </div>
+                <div class="category-card" data-category="militarybags">
+                    <div class="category-icon">🎒</div>
+                    <h3 class="category-name">شنط عسكرية</h3>
+                    <p class="category-count">0 منتج</p>
+                </div>
+                <div class="category-card" data-category="makeup">
+                    <div class="category-icon">💄</div>
+                    <h3 class="category-name">مكياج</h3>
+                    <p class="category-count">0 منتج</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Products Section -->
-    <section class="products" id="products">
+    <!-- Subcategories Section (Women/Men) - Hidden by default -->
+    <section class="subcategories" id="subcategories" style="display: none;">
         <div class="container">
-            <h2 class="section-title">منتجاتنا المميزة</h2>
-            <div class="products-filter">
-                <button class="filter-btn active" data-filter="all">الكل</button>
+            <div class="subcategories-header">
+                <button class="back-btn" id="backFromSubcategories">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+                    </svg>
+                    العودة للفئات
+                </button>
+                <h2 class="section-title" id="subcategoryTitle">اختر النوع</h2>
+                <p class="section-subtitle">اختر ما يناسبك</p>
+            </div>
+            <div class="subcategories-grid">
+                <div class="subcategory-card" data-gender="women" data-category="">
+                    <div class="subcategory-icon">👩</div>
+                    <h3 class="subcategory-name">نسائي</h3>
+                    <p class="subcategory-count" id="womenCount">0 منتج</p>
+                </div>
+                <div class="subcategory-card" data-gender="men" data-category="">
+                    <div class="subcategory-icon">👨</div>
+                    <h3 class="subcategory-name">رجالي</h3>
+                    <p class="subcategory-count" id="menCount">0 منتج</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-                <button class="filter-btn" data-filter="perfumes">عطور</button>
-                <button class="filter-btn" data-filter="watches">ساعات</button>
-                <button class="filter-btn" data-filter="accessories">اكسسوارات</button>
+    <!-- Products Section (Hidden by default, shown when category is selected) -->
+    <section class="products" id="products" style="display: none;">
+        <div class="container">
+            <div class="products-header">
+                <button class="back-btn" id="backToCategories">
+                    <svg viewBox="0 0 24 24" fill="currentColor" width="24" height="24">
+                        <path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z" />
+                    </svg>
+                    العودة للفئات
+                </button>
+                <h2 class="section-title" id="categoryTitle">المنتجات</h2>
             </div>
             <div class="products-grid" id="productsGrid">
                 <!-- Products will be loaded dynamically -->
