@@ -10,8 +10,8 @@ const categoryNames = {
     watches: 'ساعات',
     hometools: 'أدوات منزلية وكهربائية',
     wallets: 'جزادين نسائية ورجالية',
-    militarybags: 'شنط عسكرية',
-    makeup: 'مكياج'
+    militarybags: 'حقائب عسكرية ورياضية',
+    makeup: 'مستحضرات تجميل'
 };
 
 // Initialize
